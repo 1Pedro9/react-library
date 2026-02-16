@@ -1,18 +1,16 @@
-// AccuracyMonitor.js
 import React, { useEffect, useRef } from 'react';
-import './css/progress.css';   // ← same css as before (with gradients, hover, blur, etc.)
+import styles from '../css/progress.module.css';
 
-export default function AccuracyMonitor({ data = {} }) {
+export default function Progressbar({ data = {} }) {
   const toggleRef = useRef(null);
 
-  // Default / fallback (you can remove or adjust)
   const defaultData = {
     primary: 85,
     accuracy: [
       { name: "Product Inventory", percentage: 74 },
       { name: "Stock Inventory", percentage: 100 }
     ],
-    levels: [20, 60, 90] // red <20, yellow <60, green ≥60   (your thresholds)
+    levels: [20, 60, 90] // [red max, yellow max, green from here]
   };
 
   const {
@@ -21,19 +19,17 @@ export default function AccuracyMonitor({ data = {} }) {
     levels = defaultData.levels
   } = data;
 
-  // thresholds: [redMax, yellowMax, greenMin]
-  const [redMax, yellowMax] = levels; // green is everything above yellowMax
+  const [redMax, yellowMax] = levels;
 
   useEffect(() => {
     if (!toggleRef.current) return;
 
-    // Mini bar = primary value
-    const miniBar = toggleRef.current.querySelector('.mini-bar');
+    const miniBar = toggleRef.current.querySelector(`.${styles.miniBar}`);
     if (miniBar) {
       const val = Number(primary);
       miniBar.style.width = `${val}%`;
 
-      miniBar.className = 'mini-bar'; // reset
+      miniBar.className = styles.miniBar; // base class
       if (val >= yellowMax) {
         miniBar.classList.add('bg-success');
       } else if (val > redMax) {
@@ -42,41 +38,38 @@ export default function AccuracyMonitor({ data = {} }) {
         miniBar.classList.add('bg-danger');
       }
     }
-  }, [primary]);
+  }, [primary, yellowMax, redMax]);
 
-  // Decide gradient class based on your thresholds
   const getAccuracyClass = (pct) => {
-    if (pct >= yellowMax) return 'accuracy-high';
-    if (pct > redMax)     return 'accuracy-med';
-    return 'accuracy-low';
+    if (pct >= yellowMax) return styles.accuracyHigh;
+    if (pct > redMax)     return styles.accuracyMed;
+    return styles.accuracyLow;
   };
 
   return (
-    <div className="monitor-container">
+    <div className={styles.progressMonitorContainer}>
       <div className="dropdown">
-        {/* Thin bar – dropdown toggle */}
         <div
           ref={toggleRef}
-          id="monitor-toggle"
-          className="monitor-toggle dropdown-toggle"
+          id="progressbar-toggle"
+          className={`${styles.progressMonitorToggle} dropdown-toggle`}
           data-bs-toggle="dropdown"
           aria-expanded="false"
           title="Click to see detailed accuracy breakdown"
         >
-          <div id="mini-bar" className="mini-bar"></div>
+          <div className={styles.miniBar}></div>
         </div>
 
-        {/* Dropdown content – same dark blurred style */}
         <div
-          className="dropdown-menu dropdown-menu-end monitor-dropdown p-0"
-          aria-labelledby="monitor-toggle"
+          className={`dropdown-menu dropdown-menu-end ${styles.progressMonitorDropdown} p-0`}
+          aria-labelledby="progressbar-toggle"
         >
           <div style={{ padding: '12px 16px' }}>
-            <div className="monitor-title">Data Accuracy</div>
+            <div className={styles.progressMonitorTitle}>Data Accuracy</div>
 
-            {/* Primary (headline) accuracy */}
+            {/* Primary */}
             <div>
-              <div className="accuracy-label">Overall / Primary</div>
+              <div className={styles.accuracyLabel}>Overall / Primary</div>
               <div className="progress">
                 <div
                   className={`progress-bar ${getAccuracyClass(primary)}`}
@@ -91,10 +84,10 @@ export default function AccuracyMonitor({ data = {} }) {
               </div>
             </div>
 
-            {/* Dynamic list of named accuracies */}
+            {/* Dynamic items */}
             {accuracy.map((item, idx) => (
               <div key={idx}>
-                <div className="accuracy-label">{item.name}</div>
+                <div className={styles.accuracyLabel}>{item.name}</div>
                 <div className="progress">
                   <div
                     className={`progress-bar ${getAccuracyClass(item.percentage)}`}

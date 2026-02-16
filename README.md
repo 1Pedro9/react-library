@@ -9,3 +9,8 @@ A library of components that I can use in future react projects
 npm install react react-dom
 npm install -D tsup
 ```
+
+## Building it
+```bash
+npm run build
+```

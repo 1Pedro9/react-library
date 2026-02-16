@@ -1,11 +1,11 @@
-.monitor-container {
+.progressMonitorContainer {
   position: fixed;
   top: 70px;
   right: 20px;
   z-index: 1050;
 }
 
-.monitor-toggle {
+.progressMonitorToggle {
   width: 140px;
   height: 8px;
   background: rgba(68, 68, 68, 0.7);
@@ -16,18 +16,18 @@
   transition: all 0.2s ease;
 }
 
-.monitor-toggle:hover {
+.progressMonitorToggle:hover {
   height: 12px;
   background: rgba(90, 90, 90, 0.85);
 }
 
-.mini-bar {
+.miniBar {
   height: 100%;
   transition: width 0.6s ease-out;
 }
 
 /* Dropdown (expanded) */
-.monitor-dropdown {
+.progressMonitorDropdown {
   background: #1e1e1e;
   border: 1px solid #444;
   border-radius: 8px;
@@ -38,14 +38,14 @@
 }
 
 /* Labels & title */
-.accuracy-label {
+.accuracyLabel {
   font-size: 0.78rem;
   color: #bbb;
   margin-bottom: 5px;
   font-weight: 500;
 }
 
-.monitor-title {
+.progressMonitorTitle {
   font-size: 0.9rem;
   font-weight: 600;
   color: #ddd;
@@ -53,7 +53,7 @@
   text-align: center;
 }
 
-/* Progress bars – match your original */
+/* Progress bars */
 .progress {
   height: 10px;
   margin-bottom: 10px;
@@ -67,10 +67,9 @@
   margin-bottom: 4px;
 }
 
-.progress-bar {
+.progressBar {
   transition: width 0.7s ease-out;
   font-size: 0.68rem;
-  line-height: 10px;
   color: white;
   text-shadow: 0 0 3px black;
   display: flex;
@@ -79,15 +78,15 @@
   padding-right: 6px;
 }
 
-/* Gradients – this is why we need custom CSS */
-.accuracy-high {
+/* Gradients */
+.accuracyHigh {
   background: linear-gradient(90deg, #2f855a, #48bb78);
 }
 
-.accuracy-med {
+.accuracyMed {
   background: linear-gradient(90deg, #c05621, #ed8936);
 }
 
-.accuracy-low {
+.accuracyLow {
   background: linear-gradient(90deg, #9b2c2c, #e53e3e);
 }
