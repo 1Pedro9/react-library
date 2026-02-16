@@ -1,0 +1,93 @@
+.monitor-container {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  z-index: 1050;
+}
+
+.monitor-toggle {
+  width: 140px;
+  height: 8px;
+  background: rgba(68, 68, 68, 0.7);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  transition: all 0.2s ease;
+}
+
+.monitor-toggle:hover {
+  height: 12px;
+  background: rgba(90, 90, 90, 0.85);
+}
+
+.mini-bar {
+  height: 100%;
+  transition: width 0.6s ease-out;
+}
+
+/* Dropdown (expanded) */
+.monitor-dropdown {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  color: #eee;
+  min-width: 280px;
+}
+
+/* Labels & title */
+.accuracy-label {
+  font-size: 0.78rem;
+  color: #bbb;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.monitor-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ddd;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Progress bars – match your original */
+.progress {
+  height: 10px;
+  margin-bottom: 10px;
+  background: #333;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.progress:last-child {
+  margin-bottom: 4px;
+}
+
+.progress-bar {
+  transition: width 0.7s ease-out;
+  font-size: 0.68rem;
+  line-height: 10px;
+  color: white;
+  text-shadow: 0 0 3px black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+}
+
+/* Gradients – this is why we need custom CSS */
+.accuracy-high {
+  background: linear-gradient(90deg, #2f855a, #48bb78);
+}
+
+.accuracy-med {
+  background: linear-gradient(90deg, #c05621, #ed8936);
+}
+
+.accuracy-low {
+  background: linear-gradient(90deg, #9b2c2c, #e53e3e);
+}
